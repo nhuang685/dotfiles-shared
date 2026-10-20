@@ -1081,23 +1081,25 @@ do
     local servers = {
         clangd = {},
         -- gopls = {},
-        basedpyright = {
-            settings = {
-                basedpyright = {
-                    analysis = {
-                        typeCheckingMode = 'standard',
-                        -- diagnosticSeverityOverrides = {
-                        --   reportUnknownVariableType = 'none',
-                        --   reportUnknownParameterType = 'none',
-                        --   reportUnknownMemberType = 'none',
-                        --   reportUnknownArgumentType = 'none',
-                        --   reportUnusedCallResult = 'none',
-                        --   reportAny = 'none',
-                        -- },
-                    },
-                },
-            },
-        },
+        -- basedpyright = {
+        --     settings = {
+        --         basedpyright = {
+        --             analysis = {
+        --                 typeCheckingMode = 'standard',
+        --                 diagnosticMode = 'openFilesOnly',
+        --                 -- diagnosticSeverityOverrides = {
+        --                 --   reportUnknownVariableType = 'none',
+        --                 --   reportUnknownParameterType = 'none',
+        --                 --   reportUnknownMemberType = 'none',
+        --                 --   reportUnknownArgumentType = 'none',
+        --                 --   reportUnusedCallResult = 'none',
+        --                 --   reportAny = 'none',
+        --                 -- },
+        --             },
+        --         },
+        --     },
+        -- },
+        pyright = {},
         rust_analyzer = {
             settings = {
                 ['rust-analyzer'] = {
