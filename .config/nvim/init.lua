@@ -832,7 +832,7 @@ do
 
         vim.cmd('lcd ' .. vim.fn.fnameescape(root))
         vim.cmd.compiler 'make'
-        vim.opt_local.makeprg = 'bear -- make'
+        vim.opt_local.makeprg = 'bear --append -- make'
 
         vim.cmd('make ' .. opts.args)
     end, { nargs = '*' })
