@@ -813,6 +813,29 @@ do
             lsp = true,
         },
     }
+
+    vim.api.nvim_create_user_command('M', function(opts)
+        local file = vim.api.nvim_buf_get_name(0)
+        local start = vim.fn.fnamemodify(file, ':h')
+
+        local makefile = vim.fs.find('Makefile', {
+            path = start,
+            upward = true,
+        })[1]
+
+        if not makefile then
+            vim.notify('No Makefile found', vim.log.levels.ERROR)
+            return
+        end
+
+        local root = vim.fn.fnamemodify(makefile, ':h')
+
+        vim.cmd('lcd ' .. vim.fn.fnameescape(root))
+        vim.cmd.compiler 'make'
+        vim.opt_local.makeprg = 'bear -- make'
+
+        vim.cmd('make ' .. opts.args)
+    end, { nargs = '*' })
 end
 
 -- ============================================================

@@ -80,7 +80,9 @@ snippet tcoding
         int t;
         std::cin >> t;
         for (int i = 1; i <= t; ++i) {
-            dbg(i);
+    #ifdef LOCAL
+            std::cerr << "Case #" << i << ":\n";
+    #endif
             tc();
             bar();
         }
