@@ -1048,7 +1048,9 @@ do
 
             -- Execute a code action, usually your cursor needs to be on top of an error
             -- or a suggestion from your LSP for this to activate.
-            map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+            if vim.bo[event.buf].filetype ~= 'rust' then
+                map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+            end
 
             -- WARN: This is not Goto Definition, this is Goto Declaration.
             --  For example, in C this would take you to the header.
@@ -1123,24 +1125,24 @@ do
         --     },
         -- },
         pyright = {},
-        rust_analyzer = {
-            settings = {
-                ['rust-analyzer'] = {
-                    check = {
-                        command = 'clippy',
-                    },
-                    imports = {
-                        granularity = {
-                            enforce = true,
-                            group = 'module',
-                        },
-                        merge = {
-                            glob = false,
-                        },
-                    },
-                },
-            },
-        },
+        -- rust_analyzer = {
+        --     settings = {
+        --         ['rust-analyzer'] = {
+        --             check = {
+        --                 command = 'clippy',
+        --             },
+        --             imports = {
+        --                 granularity = {
+        --                     enforce = true,
+        --                     group = 'module',
+        --                 },
+        --                 merge = {
+        --                     glob = false,
+        --                 },
+        --             },
+        --         },
+        --     },
+        -- },
         kotlin_lsp = {},
         jdtls = {},
         qmlls = {
@@ -1223,6 +1225,38 @@ do
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
     end
+
+    vim.pack.add {
+        {
+            src = 'https://github.com/mrcjkb/rustaceanvim',
+            -- To avoid being surprised by breaking changes,
+            -- I recommend you set a version range
+            version = vim.version.range '^9',
+        },
+    }
+
+    vim.g.rustaceanvim = {
+        -- LSP configuration
+        server = {
+            default_settings = {
+                -- rust-analyzer language server configuration
+                ['rust-analyzer'] = {
+                    check = {
+                        command = 'clippy',
+                    },
+                    imports = {
+                        granularity = {
+                            enforce = true,
+                            group = 'module',
+                        },
+                        merge = {
+                            glob = false,
+                        },
+                    },
+                },
+            },
+        },
+    }
 end
 
 -- ============================================================
