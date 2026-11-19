@@ -1124,7 +1124,9 @@ do
         --         },
         --     },
         -- },
-        pyright = {},
+        pyright = {
+            root_markers = { 'pyproject.toml', 'pyrightconfig.json', '.git' },
+        },
         -- rust_analyzer = {
         --     settings = {
         --         ['rust-analyzer'] = {
