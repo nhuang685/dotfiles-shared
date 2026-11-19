@@ -836,6 +836,12 @@ do
 
         vim.cmd('make ' .. opts.args)
     end, { nargs = '*' })
+
+    vim.pack.add { gh 'danymat/neogen' }
+    require('neogen').setup {
+        enabled = true,
+        imput_after_comment = true,
+    }
 end
 
 -- ============================================================
